@@ -32,12 +32,14 @@ for i in range(1, 10):
             real_date = festival.select_one('div.area_txt > p:nth-child(2)').text[1:17]
             date = festival.select_one('div.area_txt > p:nth-child(2)').text[6:8]
 
+
             print(name, img_url, real_date, date)
             # doc = {
             #     'name':name,
             #     'img_url':img_url,
             #     'real_date':real_date,
-            #     'date':date
+            #     'date':date,
+            #     'like':0
             # }
             # db.festivals.insert_one(doc)
 
