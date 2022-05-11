@@ -20,7 +20,7 @@ sleep(1)  # 페이지가 로딩되는 동안 1초 간 기다립니다.
 for i in range(1, 10):
     try:
         driver.find_element_by_xpath('//*[@id="contents"]/div[2]/div[1]/div[2]//*[@id="' + str(i) +'"]').send_keys(Keys.ENTER)
-        sleep(1)
+        #sleep(1)
         req = driver.page_source  # html 정보를 가져옵니다.
 
         soup = BeautifulSoup(req, 'html.parser')  # 가져온 정보를 beautifulsoup으로 파싱해줍니다.
@@ -32,7 +32,7 @@ for i in range(1, 10):
             real_date = festival.select_one('div.area_txt > p:nth-child(2)').text[1:17]
             date = festival.select_one('div.area_txt > p:nth-child(2)').text[6:8]
 
-            print(name, img_url, real_date, date)
+            #print(name, img_url, real_date, date)
 
             doc = {
                 'name': name,
@@ -48,4 +48,9 @@ for i in range(1, 10):
 
 driver.quit()  # 정보를 가져왔으므로 드라이버는 꺼줍니다.
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 990690a32711a2c45c5add275c6f58cca017de3a
 #contents > div.wrap_contView.clfix > div.box_leftType1 > ul > li:nth-child(1) > div.area_txt > div > a
