@@ -1,10 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <title>메인 페이지</title>
+
+    <style>
+
+        .mytitle {
+            width: 100%;
+            height: 250px;
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://ojsfile.ohmynews.com/STD_IMG_FILE/2021/0407/IE002786724_STD.jpg');
+            background-position: center;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mytitle > button {
+            width: 200px;
+            height: 50px;
+
+            background-color: transparent;
+            color: white;
+
+            border-radius: 50px;
+            border: 1px solid white;
+
+            margin-top: 10px;
+        }
+
+        .mytitle > button:hover {
+            border: 2px solid white;
+        }
+
+        .month {
+
+            width: 95%;
+            max-width: 600px;
+            margin: 20px auto 0px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 3px 0px gray;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            display: none;
+
+        }
+        .month > button {
+
+            border: 1px solid black;
+        }
+        .month > button:hover {
+            border: 2px solid black;
+        }
+
+        .btn_login {
+            margin-right: auto;
+        }
+
+        .btn_login > button {
+            margin: 10px 0px 10px auto;
+            border: 1px solid black;
+        }
+        .btn_login > button:hover {
+            border: 2px solid black;
+        }
+
+        .a_1 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .a_1 > h5 {
+            margin-right: 10px;
+        }
+
+        .a_2 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+        }
+        .a_2 > button {
+            margin-right: 20px;
+            background-color: transparent;
+        }
+
+    </style>
+    <script>
+
+        function btn_month() {
+            $('#post_month').show()
+        }
+
+
+
+    </script>
+
 </head>
 <body>
+    <div class="btn_login">
+        <button>로그인</button>
+        <button>회원가입</button>
+    </div>
+
+    <div class="mytitle">
+        <h1>우리나라 축제</h1>
+        <button onclick="btn_month()">1월~12월 축제 확인하기</button>
+    </div>
+
+    <div class="month" id="post_month">
+
+            <button>1월</button>
+            <button>2월</button>
+            <button>3월</button>
+            <button>4월</button>
+            <button>5월</button>
+            <button>6월</button>
+            <button>7월</button>
+            <button>8월</button>
+            <button>9월</button>
+            <button>10월</button>
+            <button>11월</button>
+            <button>12월</button>
+    </div>
+
+    <div>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+                <div class="card">
+                    <div class="a_1">
+                        <h5 class="card-title">축제이름</h5>
+                    </div>
+
+                    <img src=https://minio.nculture.org/amsweb-opt/multimedia_assets/134/30188/17055/c/080_-2019-%ED%95%A8%ED%8F%89%EB%82%98%EB%B9%84%EC%B6%95%EC%A0%9C-full-size.jpg class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5>지역구</h5>
+                        <h5>날짜</h5>
+                        <a href="/">지도(주소)</a>
+                    </div>
+
+                    <div class="a_2">
+                    <button><i class="fa fa-heart" aria-hidden="true"></i></button>
+                    <a href="/">사이트 바로가기</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="a_1">
+                        <h5 class="card-title">축제이름</h5>
+                    </div>
+
+                    <img src=https://minio.nculture.org/amsweb-opt/multimedia_assets/134/30188/17055/c/080_-2019-%ED%95%A8%ED%8F%89%EB%82%98%EB%B9%84%EC%B6%95%EC%A0%9C-full-size.jpg class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5>지역구</h5>
+                        <h5>날짜</h5>
+                        <a href="/">지도(주소)</a>
+                    </div>
+
+                    <div class="a_2">
+                    <button><i class="fa fa-heart" aria-hidden="true"></i></button>
+                    <a href="/">사이트 바로가기</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="a_1">
+                        <h5 class="card-title">축제이름</h5>
+                    </div>
+
+                    <img src=https://minio.nculture.org/amsweb-opt/multimedia_assets/134/30188/17055/c/080_-2019-%ED%95%A8%ED%8F%89%EB%82%98%EB%B9%84%EC%B6%95%EC%A0%9C-full-size.jpg class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5>지역구</h5>
+                        <h5>날짜</h5>
+                        <a href="/">지도(주소)</a>
+                    </div>
+
+                    <div class="a_2">
+                    <button><i class="fa fa-heart" aria-hidden="true"></i></button>
+                    <a href="/">사이트 바로가기</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="a_1">
+                        <h5 class="card-title">축제이름</h5>
+                    </div>
+
+                    <img src=https://minio.nculture.org/amsweb-opt/multimedia_assets/134/30188/17055/c/080_-2019-%ED%95%A8%ED%8F%89%EB%82%98%EB%B9%84%EC%B6%95%EC%A0%9C-full-size.jpg class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5>지역구</h5>
+                        <h5>날짜</h5>
+                        <a href="/">지도(주소)</a>
+                    </div>
+
+                    <div class="a_2">
+                    <button><i class="fa fa-heart" aria-hidden="true"></i></button>
+                    <a href="/">사이트 바로가기</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
