@@ -122,8 +122,10 @@
                 url: '/festival',
                 data: {},
                 success: function (response) {
+
                     let rows = response['festivals']
                     for (let i = 0; i < rows.length; i++) {
+
                         let name = rows[i]['name']
                         let date = rows[i]['date']
                         let real_date = rows[i]['real_date']
@@ -699,7 +701,63 @@
             });
         }
 
+        function fes_Search()
+        {
+            let festival_list =[];
+            let word = $("#search").val()
+            $.ajax({
+                type: 'GET',
+                url: '/festival',
+                data: {},
+                success: function (response) {
+                    $("#cards-box *").remove();
+                    let rows = response['festivals']
+                    for (let i = 0; i < rows.length; i++) {
+                        festival_list.push(rows[i]["name"])
 
+                        let name = rows[i]['name']
+                        let date = rows[i]['date']
+                        let real_date = rows[i]['real_date']
+                        let image_url = rows[i]['img_url']
+                        let like = rows[i]['like']
+
+                        if (word == "") {
+                            alert("값을 입력해주세요!!")
+                            return
+                        }
+                        if (festival_list.includes(word))
+                        {
+                            let temp_html = `<div class="col">
+                                            <div class="card">
+                                                <div class="a_1">
+                                                    <h5 class="card-title">${date}월</h5>
+                                                </div>
+
+                                                <img src=${image_url} class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <h5>${name}</h5>
+                                                    <h5>${real_date}</h5>
+                                                    <a href="/">지도(주소)</a>
+                                                </div>
+
+                                                <div class="a_2">
+                                                <button><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                                <a href="/">사이트 바로가기</a>
+                                                </div>
+
+                                            </div>
+                                        </div>`
+                            $('#cards-box').append(temp_html)
+                            break;
+                        }
+
+                    }
+                }
+            })
+
+
+
+        }
     </script>
 
 </head>
@@ -727,6 +785,7 @@
             <button onclick="October()">10월</button>
             <button onclick="Novemver()">11월</button>
             <button onclick="December()">12월</button>
+            <input id="search" type="text" placeholder="검색어 입력"> <button onclick="fes_Search()">검색</button>
     </div>
 
     <div>

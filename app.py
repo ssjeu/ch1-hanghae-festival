@@ -23,11 +23,12 @@ db = client.ch1
 #scraping.abc()
 @app.route('/')
 def home():
+    festivals = list(db.festivals.find({}, {"_id":False}))
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
 
-        return render_template('index.html')
+        return render_template('index.html', festivals=festivals)
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
@@ -83,6 +84,12 @@ def festival_get():
 #group
 @app.route("/festival/group", methods=["GET"])
 def festival_category():
+    festival_list = list(db.festivals.find({}, {'_id':False}))
+    return jsonify({'festivals': festival_list})\
+
+#search
+@app.route("/festival/search", methods=["GET"])
+def festival_search():
     festival_list = list(db.festivals.find({}, {'_id':False}))
     return jsonify({'festivals': festival_list})
 
