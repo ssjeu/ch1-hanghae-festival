@@ -8,7 +8,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
 ca = certifi.where()
-client = MongoClient('mongodb+srv://test:sparta@cluster0.uhugw.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
+client = MongoClient('mongodb+srv://test:sparta@cluster0.c44ef.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.ch1
 
 driver = webdriver.Chrome('./chromedriver')  # 드라이버를 실행합니다.
