@@ -52,6 +52,7 @@ def login():
 #     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
 #         return redirect(url_for("home"))
 
+
 # 로그인
 @app.route('/sign_in', methods=['POST'])
 def sign_in():
@@ -78,6 +79,12 @@ def sign_in():
 def festival_get():
     festival_list = list(db.festivals.find({}, {'_id': False}))
     return jsonify({'festivals':festival_list})
+
+#group
+@app.route("/festival/group", methods=["GET"])
+def festival_category():
+    festival_list = list(db.festivals.find({}, {'_id':False}))
+    return jsonify({'festivals': festival_list})
 
 #회원가입
 @app.route('/sign_up/save', methods=['POST'])
