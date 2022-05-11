@@ -27,19 +27,19 @@ for i in range(1, 10):
         festivals = soup.select('#contents > div.wrap_contView.clfix > div.box_leftType1 > ul > li')
 
         for festival in festivals:
-            name = festival.select_one('div.area_txt > div > a').text      #앞에 공통적인 부분은 다 빼고 이름부분만 뽑기
+            name = festival.select_one('div.area_txt > div > a').text  # 앞에 공통적인 부분은 다 빼고 이름부분만 뽑기
             img_url = festival.select_one('div.photo > a > img')['src']
             real_date = festival.select_one('div.area_txt > p:nth-child(2)').text[1:17]
             date = festival.select_one('div.area_txt > p:nth-child(2)').text[6:8]
 
+            print(name, img_url, real_date, date)
 
-#            print(name, img_url, real_date, date)
             doc = {
-                'name':name,
-                'img_url':img_url,
-                'real_date':real_date,
-                'date':date,
-                'like':0
+                'name': name,
+                'img_url': img_url,
+                'real_date': real_date,
+                'date': date,
+                'like': 0
             }
             db.festivals.insert_one(doc)
 
