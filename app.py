@@ -8,8 +8,7 @@ import hashlib
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
-
-import scraping
+#import scraping
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -21,7 +20,7 @@ ca = certifi.where()
 client = MongoClient('mongodb+srv://test:sparta@cluster0.uhugw.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.ch1
 
-
+#scraping.abc()
 @app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
@@ -39,7 +38,6 @@ def home():
 def login():
     msg = request.args.get("msg")
     return render_template('login.html', msg=msg)
-
 
 # @app.route('/user/<username>')
 # def user(username):
@@ -74,6 +72,12 @@ def sign_in():
     # 찾지 못하면
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
+
+# 축제 리스트 GET
+@app.route("/festival", methods=["GET"])
+def festival_get():
+    festival_list = list(db.festivals.find({}, {'_id': False}))
+    return jsonify({'festivals':festival_list})
 
 #회원가입
 @app.route('/sign_up/save', methods=['POST'])

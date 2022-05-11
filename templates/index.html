@@ -108,13 +108,53 @@
 
     </style>
     <script>
-
         function btn_month() {
             $('#post_month').show()
         }
 
+                $(document).ready(function () {
+            listing();
+        });
 
+        function listing() {
+            $.ajax({
+                type: 'GET',
+                url: '/festival',
+                data: {},
+                success: function (response) {
+                    let rows = response['festivals']
+                    for (let i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let date = rows[i]['date']
+                        let real_date = rows[i]['real_date']
+                        let image = rows[i]['img_url']
+                        let like = rows[i]['like']
 
+                        let temp_html = `<div class="col">
+                                            <div class="card">
+                                                <div class="a_1">
+                                                    <h5 class="card-title">${date}월</h5>
+                                                </div>
+
+                                                <img src=${image} class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <h5>${name}</h5>
+                                                    <h5>${real_date}</h5>
+                                                    <a href="/">지도(주소)</a>
+                                                </div>
+
+                                                <div class="a_2">
+                                                <button><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                                <a href="/">사이트 바로가기</a>
+                                                </div>
+
+                                            </div>
+                                        </div>`
+                        $('#cards-box').append(temp_html)
+                    }
+                }
+            })
+        }
     </script>
 
 </head>
@@ -130,7 +170,6 @@
     </div>
 
     <div class="month" id="post_month">
-
             <button>1월</button>
             <button>2월</button>
             <button>3월</button>
@@ -146,87 +185,8 @@
     </div>
 
     <div>
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="card">
-                    <div class="a_1">
-                        <h5 class="card-title">축제이름</h5>
-                    </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
 
-                    <img src=https://minio.nculture.org/amsweb-opt/multimedia_assets/134/30188/17055/c/080_-2019-%ED%95%A8%ED%8F%89%EB%82%98%EB%B9%84%EC%B6%95%EC%A0%9C-full-size.jpg class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5>지역구</h5>
-                        <h5>날짜</h5>
-                        <a href="/">지도(주소)</a>
-                    </div>
-
-                    <div class="a_2">
-                    <button><i class="fa fa-heart" aria-hidden="true"></i></button>
-                    <a href="/">사이트 바로가기</a>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="a_1">
-                        <h5 class="card-title">축제이름</h5>
-                    </div>
-
-                    <img src=https://minio.nculture.org/amsweb-opt/multimedia_assets/134/30188/17055/c/080_-2019-%ED%95%A8%ED%8F%89%EB%82%98%EB%B9%84%EC%B6%95%EC%A0%9C-full-size.jpg class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5>지역구</h5>
-                        <h5>날짜</h5>
-                        <a href="/">지도(주소)</a>
-                    </div>
-
-                    <div class="a_2">
-                    <button><i class="fa fa-heart" aria-hidden="true"></i></button>
-                    <a href="/">사이트 바로가기</a>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="a_1">
-                        <h5 class="card-title">축제이름</h5>
-                    </div>
-
-                    <img src=https://minio.nculture.org/amsweb-opt/multimedia_assets/134/30188/17055/c/080_-2019-%ED%95%A8%ED%8F%89%EB%82%98%EB%B9%84%EC%B6%95%EC%A0%9C-full-size.jpg class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5>지역구</h5>
-                        <h5>날짜</h5>
-                        <a href="/">지도(주소)</a>
-                    </div>
-
-                    <div class="a_2">
-                    <button><i class="fa fa-heart" aria-hidden="true"></i></button>
-                    <a href="/">사이트 바로가기</a>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="a_1">
-                        <h5 class="card-title">축제이름</h5>
-                    </div>
-
-                    <img src=https://minio.nculture.org/amsweb-opt/multimedia_assets/134/30188/17055/c/080_-2019-%ED%95%A8%ED%8F%89%EB%82%98%EB%B9%84%EC%B6%95%EC%A0%9C-full-size.jpg class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5>지역구</h5>
-                        <h5>날짜</h5>
-                        <a href="/">지도(주소)</a>
-                    </div>
-
-                    <div class="a_2">
-                    <button><i class="fa fa-heart" aria-hidden="true"></i></button>
-                    <a href="/">사이트 바로가기</a>
-                    </div>
-
-                </div>
-            </div>
         </div>
     </div>
 
