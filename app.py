@@ -145,23 +145,18 @@ def save_img():
 
 @app.route('/posting', methods=['POST'])
 def posting():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.users.find_one({"username": payload["id"]})
-        comment_receive = request.form["comment_give"]
-        date_receive = request.form["date_give"]
-        doc = {
-            "username": user_info["username"],
-            "profile_name": user_info["profile_name"],
-            "profile_pic_real": user_info["profile_pic_real"],
-            "comment": comment_receive,
-            "date": date_receive
-        }
-        db.posts.insert_one(doc)
-        return jsonify({"result": "success", 'msg': '포스팅 성공'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+    name_receive = request.form["name_give"]
+    img_url_receive = request.form["img_url_give"]
+    real_date_receive = request.form["real_date_give"]
+    date_receive = request.form["date_give"]
+    doc = {
+        'name' : name_receive,
+        'img_url': img_url_receive,
+        'real_date': real_date_receive,
+        'date': date_receive
+    }
+    db.festivals.insert_one(doc)
+    return jsonify({"result": "success", 'msg': '축제 등록 성공'})
 
 @app.route("/mypage", methods=['GET'])
 def mypage():
