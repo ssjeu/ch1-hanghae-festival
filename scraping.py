@@ -8,8 +8,8 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
 ca = certifi.where()
-client = MongoClient('mongodb+srv://test:sparta@cluster0.uhugw.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
-db = client.ch1
+client = MongoClient('mongodb+srv://test:sparta@cluster0.uhugw.mongodb.net/Cluster0?retryWrites=true&w=majority')
+db = client.dbsparta
 
 driver = webdriver.Chrome('./chromedriver')  # 드라이버를 실행합니다.
 url = "https://korean.visitkorea.or.kr/list/fes_list.do?choiceTag=2022%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C&choiceTagId=0092f088-e6c9-425a-92f0-1bc474c43af7"
@@ -47,6 +47,5 @@ for i in range(1, 10):
         break
 
 driver.quit()  # 정보를 가져왔으므로 드라이버는 꺼줍니다.
-
 
 #contents > div.wrap_contView.clfix > div.box_leftType1 > ul > li:nth-child(1) > div.area_txt > div > a

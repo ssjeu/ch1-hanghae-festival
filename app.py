@@ -18,8 +18,8 @@ app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 SECRET_KEY = 'SPARTA'
 
 ca = certifi.where()
-client = MongoClient('mongodb+srv://test:sparta@cluster0.uhugw.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
-db = client.ch1
+client = MongoClient('mongodb+srv://test:sparta@cluster0.uhugw.mongodb.net/Cluster0?retryWrites=true&w=majority')
+db = client.dbsparta
 
 
 @app.route('/')
@@ -75,7 +75,7 @@ def sign_in():
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
-#회원가입
+# 회원가입
 @app.route('/sign_up/save', methods=['POST'])
 def sign_up():
     username_receive = request.form['username_give']
@@ -92,13 +92,18 @@ def sign_up():
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})
 
-#아이디 중복 확인
+# 아이디 중복 확인
 @app.route('/sign_up/check_dup', methods=['POST'])
 def check_dup():
     username_receive = request.form['username_give']
     exists = bool(db.users.find_one({"username": username_receive}))
     return jsonify({'result': 'success', 'exists': exists})
 
+# 축제 리스트 GET
+@app.route("/festival", methods=["GET"])
+def festival_get():
+    festival_list = list(db.festivals.find({}, {'_id': False}))
+    return jsonify({'festivals':festival_list})
 
 # @app.route('/update_profile', methods=['POST'])
 # def save_img():
