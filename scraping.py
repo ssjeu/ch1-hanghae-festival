@@ -17,6 +17,8 @@ url = "https://korean.visitkorea.or.kr/list/fes_list.do?choiceTag=2022%EB%AC%B8%
 driver.get(url)  # 드라이버에 해당 url의 웹페이지를 띄웁니다.
 sleep(1)  # 페이지가 로딩되는 동안 1초 간 기다립니다.
 
+db.festivals.delete_many({})
+
 for i in range(1, 10):
     try:
         driver.find_element_by_xpath('//*[@id="contents"]/div[2]/div[1]/div[2]//*[@id="' + str(i) +'"]').send_keys(Keys.ENTER)
@@ -32,9 +34,16 @@ for i in range(1, 10):
             real_date = festival.select_one('div.area_txt > p:nth-child(2)').text[1:17]
             date = festival.select_one('div.area_txt > p:nth-child(2)').text[6:8]
 
-            print(name, img_url, real_date, date)
+
+            festival_list = list(db.festivals.find({}, {'_id': False}))
+            count = 0
+            count = count + 1
+            num = len(festival_list) + count
+
+            print(num, name, img_url, real_date, date)
 
             doc = {
+                'num': num,
                 'name': name,
                 'img_url': img_url,
                 'real_date': real_date,
@@ -48,6 +57,6 @@ for i in range(1, 10):
 
 driver.quit()  # 정보를 가져왔으므로 드라이버는 꺼줍니다.
 
-
+print(len(festival_list)+1)
 
 #contents > div.wrap_contView.clfix > div.box_leftType1 > ul > li:nth-child(1) > div.area_txt > div > a
