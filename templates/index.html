@@ -641,7 +641,45 @@
                 }
             });
         }
+        function cancel(){
+            $.ajax({
+                type: "GET",
+                url: "/festival/group",
+                data: {},
+                success: function (response) {
+                    $("#cards-box *").remove();
 
+                    let rows = response['festivals']
+                    for (let i = 0; i < (rows.length / 2); i++) {
+                        let name = rows[i]['name']
+                        let date = rows[i]['date']
+                        let real_date = rows[i]['real_date']
+                        let image_url = rows[i]['img_url']
+                        let like = rows[i]['like']
+
+                        if(date == "")
+                        {
+                            let temp_html = `<div class="col">
+                                            <div class="card">
+                                                <img src=${image_url} class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <h5>${name}</h5>
+                                                    <h5>${real_date}</h5>
+                                                </div>
+                                                <div class="a_2">
+                                                <button><i class="fa fa-heart" aria-hidden="true"></i></button>
+                                                </div>
+
+                                            </div>
+                                        </div>`
+                            $('#cards-box').append(temp_html)
+                        }
+
+                    }
+                }
+            });
+        }
+        
         function fes_Search()
         {
             let festival_list =[];
@@ -715,10 +753,10 @@
                 }
             })
         }
-
         function close_box() {
             $('#post_month').hide()
         }
+
     </script>
 
 </head>
@@ -815,6 +853,7 @@
             <button class="button is-outlined" onclick="October()">10월</button>
             <button class="button is-outlined" onclick="Novemver()">11월</button>
             <button class="button is-outlined" onclick="December()">12월</button>
+            <button class="button is-outlined" onclick="cancel()">취소 및 연기</button>
         </div>
         <div class="search_box">
             <input id="search" type="text" placeholder="검색어 입력"> <button class="button is-small is-responsive" onclick="fes_Search()">검색</button>
