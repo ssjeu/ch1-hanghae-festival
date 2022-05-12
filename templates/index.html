@@ -60,24 +60,52 @@
         }
 
         .month {
-            width: 95%;
-            max-width: 600px;
-            margin: 20px auto 0px auto;
+            width: 50%;
+            max-width: 2000px;
+            margin: 10px auto 0px auto;
             padding: 20px;
             box-shadow: 0px 0px 3px 0px gray;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            display: none;
+        }
+
+        .month > div.btn_month {
+            margin: 20px auto 0px auto;
+            width: 95%;
+            max-width: 1200px;
+        }
+
+        .month > div.search_box {
+            margin: 20px auto 0px auto;
+            width: 95%;
+            max-width: 1200px;
+
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            display: none;
         }
 
-        .month > button {
-            border: 1px solid black;
+        .month > div.close_box {
+            margin: 20px auto 0px auto;
+            width: 95%;
+            max-width: 1200px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
         }
 
-        .month > button:hover {
-            border: 2px solid black;
+        .mycards {
+            margin: 20px auto 0px auto;
+            width: 95%;
+            max-width: 1200px;
         }
 
         .btn_login {
@@ -128,7 +156,7 @@
                 url: '/festival',
                 data: {},
                 success: function (response) {
-
+                    $("#cards-box *").remove();
                     let rows = response['festivals']
 
                     for (let i = 0; i < rows.length; i++) {
@@ -687,6 +715,10 @@
                 }
             })
         }
+
+        function close_box() {
+            $('#post_month').hide()
+        }
     </script>
 
 </head>
@@ -769,23 +801,31 @@
                 </div>
         </section>
     <div class="month" id="post_month">
-            <button onclick="January()">1월</button>
-            <button onclick="February()">2월</button>
-            <button onclick="March()">3월</button>
-            <button onclick="April()">4월</button>
-            <button onclick="May()">5월</button>
-            <button onclick="June()">6월</button>
-            <button onclick="July()">7월</button>
-            <button onclick="August()">8월</button>
-            <button onclick="September()">9월</button>
-            <button onclick="October()">10월</button>
-            <button onclick="Novemver()">11월</button>
-            <button onclick="December()">12월</button>
-            <input id="search" type="text" placeholder="검색어 입력"> <button onclick="fes_Search()">검색</button>
+        <div class="btn_month">
+            <button class="button is-primary is-outlined" onclick="listing()">전체</button>
+            <button class="button is-outlined" onclick="January()">1월</button>
+            <button class="button is-outlined" onclick="February()">2월</button>
+            <button class="button is-outlined" onclick="March()">3월</button>
+            <button class="button is-outlined" onclick="April()">4월</button>
+            <button class="button is-outlined" onclick="May()">5월</button>
+            <button class="button is-outlined" onclick="June()">6월</button>
+            <button class="button is-outlined" onclick="July()">7월</button>
+            <button class="button is-outlined" onclick="August()">8월</button>
+            <button class="button is-outlined" onclick="September()">9월</button>
+            <button class="button is-outlined" onclick="October()">10월</button>
+            <button class="button is-outlined" onclick="Novemver()">11월</button>
+            <button class="button is-outlined" onclick="December()">12월</button>
+        </div>
+        <div class="search_box">
+            <input id="search" type="text" placeholder="검색어 입력"> <button class="button is-small is-responsive" onclick="fes_Search()">검색</button>
+        </div>
+        <div class="close_box">
+            <button class="button is-responsive" onclick="close_box()">닫기</button>
+        </div>
     </div>
 </section>
 
-    <div>
+    <div class="mycards">
         <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
 
         </div>
